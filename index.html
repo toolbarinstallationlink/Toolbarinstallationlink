@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toolbar Installer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .info {
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    .progress {
+      font-size: 2em;
+      margin: 20px 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background: #999;
+    }
+
+    .paused {
+      font-weight: bold;
+      color: red;
+      margin-top: 10px;
+    }
+
+    .prompt {
+      font-size: 1.2em;
+      margin-top: 20px;
+      color: #cc0000;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="info">
+    <h2>Toolbar Installer</h2>
+    <p><strong>Name:</strong> Garry Jorgensen</p>
+    <p><strong>Sex:</strong> Male</p>
+    <p><strong>Position:</strong> Installer Ambassador</p>
+  </div>
+
+  <div class="progress" id="progress">Click start to begin installation...</div>
+  <button id="startBtn" onclick="startCount()">Start</button>
+  <div class="paused" id="pausedText" style="display:none;">Installation paused at 99%</div>
+  <div class="prompt" id="paymentPrompt" style="display:none;">Prompt Payment Required to Continue</div>
+
+  <script>
+    let count = 0;
+    let interval;
+
+    function startCount() {
+      document.getElementById("startBtn").disabled = true;
+      interval = setInterval(() => {
+        count++;
+        document.getElementById("progress").innerText = `Installing... ${count}%`;
+        if (count === 99) {
+          clearInterval(interval);
+          document.getElementById("pausedText").style.display = "block";
+          document.getElementById("paymentPrompt").style.display = "block";
+        }
+      }, 80);
+    }
+  </script>
+
+</body>
+</html>
